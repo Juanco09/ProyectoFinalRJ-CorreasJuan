@@ -1,0 +1,25 @@
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .item-icon {
+    font-size: 54px;
+    margin-right: 10px;
+  }
+  
+  .item-count {
+    font-weight: bold;
+    font-size: 24px;
+    color: black;
+    visibility: hidden;
+    min-width: 24px;
+  }
+
+  .item-count-show {
+    visibility: visible;
+  }

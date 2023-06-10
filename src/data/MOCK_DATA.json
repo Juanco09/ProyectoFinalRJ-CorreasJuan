@@ -1,0 +1,100 @@
+[
+    {
+        "id": 1,
+        "name": "El Ciprés",
+        "description": "Sangiovese",
+        "price": 100,
+        "img": "https://via.placeholder.com/220",
+        "category": "rosados",
+        "stock": 3,
+        "presentations": [
+            {
+                "value": "estiba",
+                "label": "Estiba"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Valle Las Acequias Clase A",
+        "description": "Bonarda",
+        "price": 200,
+        "img": "https://via.placeholder.com/220",
+        "category": "tintos",
+        "stock": 0,
+        "presentations": [
+            {
+                "value": "estiba",
+                "label": "Estiba"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Valle Las Acequias",
+        "description": "Chardonnay",
+        "price": 300,
+        "img": "https://via.placeholder.com/220",
+        "category": "blancos",
+        "stock": 1,
+        "presentations": [
+            {
+                "value": "estiba",
+                "label": "Estiba"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "El Ciprés",
+        "description": "Torrontés",
+        "price": 400,
+        "img": "https://via.placeholder.com/220",
+        "category": "blancos",
+        "stock": 50,
+        "presentations": [
+            {
+                "value": "estiba",
+                "label": "Estiba"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Luis Segundo",
+        "description": "Malbec",
+        "price": 500,
+        "img": "https://via.placeholder.com/220",
+        "category": "tintos",
+        "stock": 50,
+        "presentations": [
+            {
+                "value": "estiba",
+                "label": "Estiba"
+            },
+            {
+                "value": "premium",
+                "label": "Premium"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Las Acequias Oak",
+        "description": "Malbec",
+        "price": 600,
+        "img": "https://via.placeholder.com/220",
+        "category": "tintos",
+        "stock": 50,
+        "presentations": [
+            {
+                "value": "estiba",
+                "label": "Estiba"
+            },
+            {
+                "value": "premium",
+                "label": "Premium"
+            }
+        ]
+    }
+]
