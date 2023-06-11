@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { CartContext } from "../../context/CartContext"
 import { Navigate, Link } from 'react-router-dom'
-import { collection, addDoc, updateDoc, getDoc, doc } from 'firebase/firestore'
+import { collection, addDoc, writeBatch, query, where, documentId, getDocs } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 
 const Checkout = () => {
@@ -16,14 +16,13 @@ const Checkout = () => {
     })
 
     const handleInputChange = (e) => {
-
         setValues({
             ...values,
             [e.target.name]: e.target.value
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (values.tarjeta.length != 16) {
@@ -46,32 +45,37 @@ const Checkout = () => {
             fecha: new Date()
         }
 
-        console.log("Submit", orden);
-
+        const batch = writeBatch(db)
+        const ordersRef = collection(db, 'orders')
         const productosRef = collection(db, 'vinos')
 
-        cart.forEach((item) => {
-            const docRef = doc(productosRef, item.id)
+        const outOfStock = []
 
-            getDoc(docRef)
-                .then((doc) => {
-                    if (doc.data().stock >= item.cantidad) {
-                        updateDoc(docRef, {
-                            stock: doc.data().stock - item.cantidad
-                        })
-                    } else {
-                        alert("No hay suficiente stock de " + item.name)
-                    }
+        const itemsRef = query(productosRef, where(documentId(), 'in', cart.map(prod => prod.id)))
+
+        const response = await getDocs(itemsRef)
+
+        response.docs.forEach((doc) => {
+            const item = cart.find(prod => prod.id === doc.id)
+            if (doc.data().stock >= item.cantidad) {
+                batch.update(doc.ref, {
+                    stock: doc.data().stock - item.cantidad
                 })
+            } else {
+                outOfStock.push(item)
+            }
         })
 
-        const ordersRef = collection(db, 'orders')
-
-        addDoc(ordersRef, orden)
-            .then((doc) => {
-                setOrderId(doc.id)
-                vaciarCarrito()
-            })
+        if (outOfStock.length === 0) {
+            await batch.commit()
+            addDoc(ordersRef, orden)
+                .then((doc) => {
+                    setOrderId(doc.id)
+                    vaciarCarrito()
+                })
+        } else {
+            alert("No hay stock suficiente de alguno de los productos seleccionados")
+        }
     }
 
     if (orderId) {

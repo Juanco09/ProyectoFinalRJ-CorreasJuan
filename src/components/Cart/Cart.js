@@ -30,9 +30,9 @@ const Cart = () => {
                             <img src={prod.img} alt={prod.name} />
                             <div>
                                 <h4>{prod.name} - {prod.description}</h4>
-                                <small>Precio unidad: {prod.price}</small>
+                                <small>Precio unidad: ${prod.price}</small>
                                 <small> Cantidad: {prod.cantidad}</small>
-                                <p>Precio final: {prod.price * prod.cantidad}</p>
+                                <p>Precio final: ${prod.price * prod.cantidad}</p>
                                 <button onClick={() => eliminarDelCarrito(prod.id)} className='btn btn-danger'><BsTrash /></button>
                             </div>
                             

@@ -3,14 +3,12 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import ItemCount from '../ItemCount/ItemCount';
 import { useContext, useState } from 'react'
-import PresentPicker from '../PresentPicker/PresentPicker';
 import { CartContext } from '../../context/CartContext';
 import LowStockWarn from './LowStockWarn';
 
 const ItemDetail = ({ item }) => {
     const { agregarAlCarrito, isInCart } = useContext(CartContext)
     const [cantidad, setCantidad] = useState(1)
-    const [present, setPresent] = useState("estiba")
 
     const navigate = useNavigate()
     const handleVolver = () => {
@@ -21,7 +19,6 @@ const ItemDetail = ({ item }) => {
         const newItem = {
             ...item,
             cantidad,
-            present
         }
 
         agregarAlCarrito(newItem)
@@ -43,12 +40,9 @@ const ItemDetail = ({ item }) => {
                 <Card.Body>
                     <Card.Title>{item.name}</Card.Title>
                     <Card.Text>
-                        <p>{item.description}</p>
-                        <p>Precio: ${item.price}</p>
+                        <h5>{item.description}</h5>
+                        <h5>Precio: ${item.price}</h5>
                     </Card.Text>
-
-                    {/* <PresentPicker setPresent={setPresent} options={item.presentations} />
-                    {item.stock <= 5 && <LowStockWarn stock={item.stock}/>} */}
 
                     {
                         isInCart(item.id)

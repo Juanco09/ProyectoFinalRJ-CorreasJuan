@@ -6,7 +6,7 @@ const Item = ({ item }) => {
     return (
         <div className='col-3 m-1'>
 
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '18rem' }} border='primary'>
                 <Card.Img variant="top" src={item.img} />
                 <Card.Body>
                     <Card.Title>{item.name}</Card.Title>
