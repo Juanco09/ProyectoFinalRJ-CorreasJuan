@@ -28,7 +28,7 @@ export const LoginProvider = ({ children }) => {
                     logged: true
                 })
             })
-            .catch((err) => console.log(err))
+            .catch((err) => alert('usuario y/o contraseña incorrecto'))
     }
 
     const register = (values) => {
@@ -39,7 +39,7 @@ export const LoginProvider = ({ children }) => {
                     logged: true
                 })
             })
-            .catch((err) => console.log(err.message))
+            .catch((err) => alert(err.message))
     }
 
     const logout = () => {
